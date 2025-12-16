@@ -55,7 +55,7 @@ export function SearchBar({ onSelectSong }: SearchBarProps) {
     const fetchResults = async (text: string) => {
         setLoading(true);
         try {
-            const res = await fetch(`http://localhost:3000/api/deezer/search?q=${encodeURIComponent(text)}`);
+            const res = await fetch(`http://localhost:3000/api/search?q=${encodeURIComponent(text)}`);
             const data = await res.json();
 
             if (!data || !data.data) {
@@ -87,14 +87,15 @@ export function SearchBar({ onSelectSong }: SearchBarProps) {
         setIsOpen(false);
         onSelectSong(song.artist, song.title);
     };
+    
 
     return (
         <div ref={ref} className="relative group">
             <div className="relative flex flex-col px-5 py-6">
 
-                <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                <div className="relative z-10 flex items-center  w-full p-2 rounded-full gap-5 bg-transparent group-hover:bg-zinc-600/40 transition duration-500">
+                <div className="relative z-10 flex items-center w-full p-2 rounded-full gap-5 bg-transparent transition duration-500">
                     <FiSearch className="text-zinc-400 w-5 h-5" />
                     <input
                         placeholder="Buscar Canción"

@@ -17,6 +17,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     hasPrevious,
 }) => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const currentSrcRef = useRef<string | null>(null); // ✅ NUEVO
     const [isPlaying, setIsPlaying] = useState(false);
     const [volume, setVolume] = useState(true)
 
@@ -33,19 +34,33 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         }
     };
 
-    // 🔹 Reproducir automáticamente cuando cambia la canción
+    // Reproducir automáticamente cuando cambia la canción
     useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
 
-        audio.src = src;
-
+        // MATAR AUDIO ANTERIOR
         audio.pause();
+        audio.src = "";
         audio.load();
-        audio.play()
-            .then(() => setIsPlaying(true))
-            .catch(err => console.warn("🎧 Bloqueo autoplay:", err));
+
+        // REGISTRAR SRC ACTUAL
+        currentSrcRef.current = src;
+
+        audio.src = src;
+        audio.load();
+        setIsPlaying(false);
     }, [src]);
+
+    
+    const handleCanPlay = () => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        if (audio.src !== currentSrcRef.current) return; 
+
+        audio.play().then(() => setIsPlaying(true)).catch(() => { });
+    };
 
     useEffect(() => {
         if (!audioRef.current) return
@@ -54,7 +69,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
     return (
         <div className="mt-4 flex flex-col items-center gap-4">
-            <audio ref={audioRef} src={src} loop className="hidden" />
+            <audio key={src} ref={audioRef} src={src} onCanPlay={handleCanPlay} loop className="hidden" />
 
             <div className="flex gap-6 items-center">
                 <button
