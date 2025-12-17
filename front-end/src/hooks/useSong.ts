@@ -10,7 +10,7 @@ export function useSong() {
             setLoading(true);
 
             const res = await fetch(
-                `http://localhost:3000/api/track?artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(track)}`
+                `/api/track?artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(track)}`
             );
 
             if (!res.ok) {

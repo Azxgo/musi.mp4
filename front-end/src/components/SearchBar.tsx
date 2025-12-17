@@ -55,7 +55,7 @@ export function SearchBar({ onSelectSong }: SearchBarProps) {
     const fetchResults = async (text: string) => {
         setLoading(true);
         try {
-            const res = await fetch(`http://localhost:3000/api/search?q=${encodeURIComponent(text)}`);
+            const res = await fetch(`/api/search?q=${encodeURIComponent(text)}`);
             const data = await res.json();
 
             if (!data || !data.data) {

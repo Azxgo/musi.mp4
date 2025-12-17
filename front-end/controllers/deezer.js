@@ -55,7 +55,9 @@ export const searchTrack = async (req, res) => {
 }
 
 export const getArtistTopTracks = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.params || req.query; // así funciona con el handler actual
+    if (!id) return res.status(400).json({ error: "Missing artist id" });
+
     try {
         const response = await fetch(`https://api.deezer.com/artist/${id}/top?limit=20`);
         const data = await response.json();
