@@ -55,11 +55,11 @@ function App() {
             </p>
           ) : loading ? (
             <div className="flex flex-col justify-center items-center animate-pulse">
-              <div className="bg-zinc-600/40 w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-lg mb-4" />
-              <div className="flex flex-col items-center gap-2 p-3 bg-zinc-800/30 w-40 sm:w-56 md:w-64 rounded-lg">
-                <div className="h-7 bg-zinc-600/40 rounded-lg w-48"></div>
-                <div className="h-6 bg-zinc-600/40 rounded-lg w-32"></div>
-                <div className="h-5 bg-zinc-600/40 rounded-lg w-32"></div>
+              <div className="bg-zinc-600/40 w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-lg mb-4" />
+              <div className="flex flex-col items-center gap-2 p-3 bg-zinc-800/30 w-40 sm:w-56 md:w-64 lg:w-72 rounded-lg">
+                <div className="h-5 sm:h-5 md:h-6 lg:h-7 w-full bg-zinc-600/40 rounded-lg"></div>
+                <div className="h-4 sm:h-4 md:h-5 lg:h-6 w-3/4 bg-zinc-600/40 rounded-lg"></div>
+                <div className="h-3 sm:h-3 md:h-4 lg:h-5 w-2/3 bg-zinc-600/40 rounded-lg"></div>
               </div>
             </div>
           ) : (
@@ -71,7 +71,7 @@ function App() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: navigation.direction === "next" ? -100 : 100 }}
                   transition={{ duration: 0.45 }}
-                  className="flex flex-col justify-center items-center"
+                  className="flex flex-col justify-center items-center max-w-md"
                 >
                   <img
                     src={song.albumCover}
