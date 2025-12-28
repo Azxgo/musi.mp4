@@ -52,12 +52,12 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         setIsPlaying(false);
     }, [src]);
 
-    
+
     const handleCanPlay = () => {
         const audio = audioRef.current;
         if (!audio) return;
 
-        if (audio.src !== currentSrcRef.current) return; 
+        if (audio.src !== currentSrcRef.current) return;
 
         audio.play().then(() => setIsPlaying(true)).catch(() => { });
     };
@@ -68,31 +68,34 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     }, [volume])
 
     return (
-        <div className="mt-4 flex flex-col items-center gap-4">
+        <div className="mt-4 flex flex-col items-center gap-3 sm:gap-4 w-full max-w-md px-2">
             <audio key={src} ref={audioRef} src={src} onCanPlay={handleCanPlay} loop className="hidden" />
 
             <div className="flex gap-6 items-center">
                 <button
                     onClick={onPrevious}
                     disabled={!hasPrevious}
-                    className={`flex items-center justify-center border-3 border-white w-14 h-14 rounded-full transition ${hasPrevious ? "bg-transparent hover:bg-white/10" : "opacity-50 cursor-not-allowed"}`}
+                    className={`flex items-center justify-center border-3 border-white w-10 h-10
+                    sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full transition ${hasPrevious ? "bg-transparent hover:bg-white/10" : "opacity-50 cursor-not-allowed"}`}
                 >
-                    <FaStepBackward size={22} />
+                    <FaStepBackward className="text-base sm:text-lg md:text-xl" />
                 </button>
 
                 <button
                     onClick={togglePlay}
-                    className="bg-transparent hover:bg-white/10 border-3 border-white w-16 h-16 flex items-center justify-center rounded-full transition"
+                    className="bg-transparent hover:bg-white/10 border-3 border-white w-12 h-12 sm:w-14 sm:h-14
+                    md:w-16 md:h-16 flex items-center justify-center rounded-full transition"
                 >
-                    {isPlaying ? <FaPause size={27} /> : <FaPlay size={27} />}
+                    {isPlaying ? <FaPause className="text-lg sm:text-xl md:text-2xl" /> : <FaPlay className="text-lg sm:text-xl md:text-2xl" />}
                 </button>
 
                 <button
                     onClick={onNext}
                     disabled={!hasNext}
-                    className={`flex items-center justify-center border-3 border-white w-14 h-14 rounded-full transition ${hasNext ? "bg-transparent hover:bg-white/10" : "opacity-50 cursor-not-allowed"}`}
+                    className={`flex items-center justify-center border-3 border-white   w-10 h-10
+                    sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full transition ${hasNext ? "bg-transparent hover:bg-white/10" : "opacity-50 cursor-not-allowed"}`}
                 >
-                    <FaStepForward size={22} />
+                    <FaStepForward className="text-base sm:text-lg md:text-xl" />
                 </button>
             </div>
 

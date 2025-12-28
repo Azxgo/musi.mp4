@@ -48,15 +48,15 @@ function App() {
         className="min-h-screen w-full flex flex-col items-center justify-center">
 
         <div className="absolute inset-0 bg-black/15 pointer-events-none z-1"></div>
-        <div className="flex flex-col items-center justify-center text-white gap-4 mt-10 z-49">
+        <div className="flex flex-col items-center justify-center text-white gap-4 mt-6 sm:mt-10 px-4 z-49">
           {!song && !loading ? (
             <p className="text-lg text-zinc-300 text-center">
               Busca una canción para explorar recomendaciones
             </p>
           ) : loading ? (
             <div className="flex flex-col justify-center items-center animate-pulse">
-              <div className="bg-zinc-600/40 w-74 h-74 rounded-lg mb-4" />
-              <div className="flex flex-col justify-center items-center gap-2 p-2 bg-zinc-800/30 w-74 rounded-lg">
+              <div className="bg-zinc-600/40 w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-lg mb-4" />
+              <div className="flex flex-col items-center gap-2 p-3 bg-zinc-800/30 w-40 sm:w-56 md:w-64 rounded-lg">
                 <div className="h-7 bg-zinc-600/40 rounded-lg w-48"></div>
                 <div className="h-6 bg-zinc-600/40 rounded-lg w-32"></div>
                 <div className="h-5 bg-zinc-600/40 rounded-lg w-32"></div>
@@ -76,12 +76,12 @@ function App() {
                   <img
                     src={song.albumCover}
                     alt="cover"
-                    className="bg-zinc-600 w-74 h-74 rounded-lg shadow-xl"
+                    className="bg-zinc-600 rounded-lg shadow-xl w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 object-cover"
                   />
-                  <div className="mt-4 p-2 bg-zinc-800/30 w-74 rounded-lg text-center">
-                    <Marquee text={song.title} className="text-2xl font-semibold mx-auto" speed={35} />
-                    <h2 className="text-xl">{song.artist}</h2>
-                    <Marquee text={song.album} className="text-lg  mx-auto" speed={20} />
+                  <div className=" mt-4 p-3 bg-zinc-800/30 rounded-lg text-center w-40 sm:w-56 md:w-64 lg:w-72">
+                    <Marquee text={song.title} className="text-base sm:text-xl md:text-2xl font-semibold mx-auto" speed={35} />
+                    <h2 className="text-sm sm:text-lg md:text-xl">{song.artist}</h2>
+                    <Marquee text={song.album} className="text-sm sm:text-base md:text-lg mx-auto" speed={20} />
                   </div>
                 </motion.div>
               )}
